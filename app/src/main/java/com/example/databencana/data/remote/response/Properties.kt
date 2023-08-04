@@ -2,33 +2,32 @@ package com.example.databencana.data.remote.response
 
 
 import com.google.gson.annotations.SerializedName
-import java.sql.Timestamp
 
 data class Properties(
-    @SerializedName("pkey")
-    val pkey: String = "",
     @SerializedName("created_at")
-    val createdAt: Timestamp? = null,
+    val createdAt: String? = null,
     @SerializedName("disaster_type")
-    val disasterType: String = "",
+    val disasterType: String? = null,
     @SerializedName("image_url")
-    val imageUrl: String = "",
+    val imageUrl: String? = null,
     @SerializedName("partner_code")
-    val partnerCode: String = "",
+    val partnerCode: String? = null,
     @SerializedName("partner_icon")
-    val partnerIcon: String = "",
+    val partnerIcon: String? = null,
+    @SerializedName("pkey")
+    val pkey: String? = null,
     @SerializedName("report_data")
-    val reportData: ReportData = ReportData(),
+    val reportData: ReportData? = null,
     @SerializedName("source")
-    val source: String = "",
+    val source: String? = null,
     @SerializedName("status")
-    val status: String = "",
+    val status: String? = null,
     @SerializedName("tags")
-    val tags: Tags = Tags(),
+    val tags: Tags? = null,
     @SerializedName("text")
-    val text: String = "",
+    val text: String? = null,
     @SerializedName("title")
-    val title: String = "",
+    val title: String? = null,
     @SerializedName("url")
-    val url: String = ""
+    val url: String? = null
 )

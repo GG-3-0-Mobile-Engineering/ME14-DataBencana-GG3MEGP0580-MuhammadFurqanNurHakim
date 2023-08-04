@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class Tags(
     @SerializedName("district_id")
-    val districtId: Int = 0,
+    val districtId: String? = null,
     @SerializedName("instance_region_code")
-    val instanceRegionCode: String = "",
+    val instanceRegionCode: String? = null,
     @SerializedName("local_area_id")
-    val localAreaId: Int = 0,
+    val localAreaId: String? = null,
     @SerializedName("region_code")
-    val regionCode: Int = 0
+    val regionCode: String? = null
 )

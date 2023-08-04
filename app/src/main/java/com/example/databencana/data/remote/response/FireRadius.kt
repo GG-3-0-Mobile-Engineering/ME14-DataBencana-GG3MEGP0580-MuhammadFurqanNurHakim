@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class FireRadius(
     @SerializedName("lat")
-    val lat: Double = 0.0,
+    val lat: Double? = null,
     @SerializedName("lng")
-    val lng: Double = 0.0
+    val lng: Double? = null
 )

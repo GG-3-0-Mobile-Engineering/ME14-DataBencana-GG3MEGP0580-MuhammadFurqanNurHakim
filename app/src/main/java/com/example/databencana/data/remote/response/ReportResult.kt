@@ -3,9 +3,9 @@ package com.example.databencana.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
-data class ReportResponse(
-    @SerializedName("statusCode")
-    val statusCode: Int = 0,
+data class ReportResult(
     @SerializedName("result")
-    val result: Result = Result(),
+    val result: Result? = null,
+    @SerializedName("statusCode")
+    val statusCode: Int? = null
 )

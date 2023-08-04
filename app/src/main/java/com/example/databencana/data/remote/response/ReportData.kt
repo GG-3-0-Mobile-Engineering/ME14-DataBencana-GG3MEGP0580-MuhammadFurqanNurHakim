@@ -5,33 +5,33 @@ import com.google.gson.annotations.SerializedName
 
 data class ReportData(
     @SerializedName("accessabilityFailure")
-    val accessabilityFailure: Int = 0,
+    val accessabilityFailure: Int? = null,
     @SerializedName("airQuality")
-    val airQuality: Int = 0,
+    val airQuality: Int? = null,
     @SerializedName("condition")
-    val condition: Int = 0,
+    val condition: Int? = null,
     @SerializedName("evacuationArea")
-    val evacuationArea: Boolean = false,
+    val evacuationArea: Boolean? = null,
     @SerializedName("evacuationNumber")
-    val evacuationNumber: Int = 0,
+    val evacuationNumber: Int? = null,
     @SerializedName("fireDistance")
-    val fireDistance: Double= 0.0,
+    val fireDistance: Double? = null,
     @SerializedName("fireLocation")
-    val fireLocation: FireLocation = FireLocation(),
+    val fireLocation: FireLocation? = null,
     @SerializedName("fireRadius")
-    val fireRadius: FireRadius = FireRadius(),
+    val fireRadius: FireRadius? = null,
     @SerializedName("flood_depth")
-    val floodDepth: Int= 0,
+    val floodDepth: Int? = null,
     @SerializedName("impact")
-    val impact: Int = 0,
+    val impact: Int? = null,
     @SerializedName("personLocation")
-    val personLocation: PersonLocation = PersonLocation(),
+    val personLocation: PersonLocation? = null,
     @SerializedName("report_type")
-    val reportType: String = "",
+    val reportType: String? = null,
     @SerializedName("structureFailure")
-    val structureFailure: Int = 0,
+    val structureFailure: Int? = null,
     @SerializedName("visibility")
-    val visibility: Int = 0,
+    val visibility: Int? = null,
     @SerializedName("volcanicSigns")
-    val volcanicSigns: List<Int> = emptyList()
+    val volcanicSigns: List<Int>? = null
 )

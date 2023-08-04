@@ -1,5 +1,6 @@
-package com.example.databencana.presentation
+package com.example.databencana.presentation.home_screen.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -16,22 +17,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.databencana.data.remote.response.ReportResponse
-import com.example.databencana.domain.model.DataReport
-import com.example.databencana.presentation.home.HomeViewModel
+import com.example.databencana.domain.model.ReportModel
+import com.example.databencana.presentation.home_screen.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomSheets() {
-
-//    val homeViewModel = viewModel(modelClass = HomeViewModel::class.java)
-//    val report by homeViewModel.report.collectAsState()
+fun BottomSheets(
+    reportModel: List<ReportModel>
+) {
 
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberBottomSheetScaffoldState()
 
     BottomSheetScaffold(
+        modifier = Modifier.zIndex(3f),
         scaffoldState = scaffoldState,
         sheetPeekHeight = 75.dp,
         sheetContent = {
@@ -46,13 +47,13 @@ fun BottomSheets() {
                     .align(Alignment.CenterHorizontally)
 
             ) {
-
+                LazyColumn(modifier = Modifier.fillMaxSize()){
+                    items(reportModel){ data ->
+                        Text(text = "Jenis Bencana: " + data.type)
+                    }
+                }
             }
-//            LazyColumn{
-//                items(report){ data: DataReport ->
-//                    Text(text = data.type)
-//                }
-//            }
+
         }
     ) {
     }
