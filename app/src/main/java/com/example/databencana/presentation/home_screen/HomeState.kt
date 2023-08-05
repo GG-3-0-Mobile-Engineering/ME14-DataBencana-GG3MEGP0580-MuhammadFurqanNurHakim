@@ -8,7 +8,7 @@ data class HomeState (
 
     //Disaster Report
     val reportModel: List<ReportModel> = emptyList(),
-    val timePeriod: String? = "604800",
+    val timePeriod: String? = "86400",
     val regionCode: String? = null,
     val disaster: String? = null,
 

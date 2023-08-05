@@ -30,6 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.databencana.R
@@ -47,7 +48,6 @@ fun SearchBars(
     val searchProvince by viewModel.searchProvince(province).collectAsState()
     val isSearching by viewModel.isSearching.collectAsState()
 
-    var query by remember { mutableStateOf("") }
     var active by remember { mutableStateOf(false) }
 
     DockedSearchBar(
@@ -59,8 +59,12 @@ fun SearchBars(
         onQueryChange = viewModel::onSearchTextChange ,
         onSearch = {
                     viewModel.isSearching(false)
+                    if(searchProvince.isNotEmpty()){
+                        viewModel.getRegionCode(searchProvince[0].code, searchProvince[0].name )
+                    }else{
+                        viewModel.onSearchTextChange("")
+                    }
                     active = false
-                    viewModel.getRegionCode(searchProvince[0].code, searchProvince[0].name )
                    },
         active = active,
         onActiveChange = { active = it },
@@ -104,21 +108,34 @@ fun SearchBars(
                 )
             }
         }else{
-            LazyColumn(modifier = Modifier.fillMaxWidth()){
-                Log.d("Search Province: ", searchProvince.size.toString())
-                items(searchProvince){ province ->
-                    Text(
-                        text = province.name,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 14.dp)
-                            .padding(horizontal = 12.dp)
-                            .clickable {
-                                active = false
-                                viewModel.getRegionCode(province.code, province.name)
-                            }
+            if (searchProvince.isNotEmpty()){
+                LazyColumn(modifier = Modifier.fillMaxWidth()){
+                    Log.d("Search Province: ", searchProvince.size.toString())
+                    items(searchProvince){ province ->
+                        Text(
+                            text = province.name,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 14.dp)
+                                .padding(horizontal = 12.dp)
+                                .clickable {
+                                    active = false
+                                    viewModel.getRegionCode(province.code, province.name)
+                                }
+                        )
+                        Divider()
+                    }
+                }
+            }else{
+                Box(modifier = Modifier
+                    .fillMaxSize(),
+                    contentAlignment = Alignment.Center
                     )
-                    Divider()
+                {
+                    Text(
+                        text = stringResource(id = R.string.empty_province),
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
         }

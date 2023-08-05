@@ -2,6 +2,7 @@
     <string name="app_name">Data Bencana</string>
     <string name="search">Search</string>
     <string name="disaster_info">Disaster Information</string>
+    <string name="empty_province">No supported area found</string>
 
     <!--    Disaster List   -->
     <string-array name="disaster_names">
