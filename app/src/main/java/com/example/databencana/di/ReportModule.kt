@@ -1,5 +1,6 @@
 package com.example.databencana.di
 
+import android.content.Context
 import com.example.databencana.data.remote.ReportsApi
 import com.example.databencana.data.repository.ReportsRepositoryImpl
 import com.example.databencana.domain.repository.ReportsRepository
@@ -8,6 +9,7 @@ import com.example.databencana.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -36,8 +38,8 @@ object ReportModule {
 
     @Provides
     @Singleton
-    fun provideReportsRepository(api: ReportsApi): ReportsRepository {
-        return ReportsRepositoryImpl(api)
+    fun provideReportsRepository(api: ReportsApi, @ApplicationContext context: Context): ReportsRepository {
+        return ReportsRepositoryImpl(api, context)
     }
 
 }

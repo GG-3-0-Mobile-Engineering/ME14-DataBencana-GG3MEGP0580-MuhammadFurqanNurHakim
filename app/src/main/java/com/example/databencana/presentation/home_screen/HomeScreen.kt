@@ -1,12 +1,10 @@
 package com.example.databencana.presentation.home_screen
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -21,22 +19,17 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
-    val state = viewModel.state.value
-
-    Log.d("Home Screen", state.reportModel.size.toString())
-    Log.d("Home Screen Disaster", state.disaster.toString())
-
-    if (state.isLoading){
+    if (viewModel.state.value.isLoading){
         CircularProgressIndicator()
     }else{
         Box (modifier = Modifier.fillMaxSize()){
-            Maps(state.reportModel)
+            Maps(viewModel.state.value.reportModel)
             Column {
-                SearchBars(navController)
+                SearchBars(navController, viewModel)
                 FilterChips(viewModel)
             }
 
-            BottomSheets(state.reportModel)
+            BottomSheets(viewModel.state.value.reportModel)
         }
     }
 }

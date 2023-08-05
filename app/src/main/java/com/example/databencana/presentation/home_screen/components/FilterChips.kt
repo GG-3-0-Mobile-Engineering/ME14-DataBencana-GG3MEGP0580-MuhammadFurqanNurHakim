@@ -1,5 +1,6 @@
 package com.example.databencana.presentation.home_screen.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
@@ -28,16 +29,10 @@ fun FilterChips(
     viewModel: HomeViewModel
 ) {
 
+    val disasterList = viewModel.state.value.disasterType
 
-    val disasterNames: Array<String> = stringArrayResource(id = R.array.disaster_names)
-    val disasterCodes: Array<String> = stringArrayResource(id = R.array.disaster_codes)
+    Log.d("Disaster type", disasterList.size.toString())
 
-    val disasterList = disasterNames.mapIndexed { index, s ->
-        DisasterType(
-            label = disasterNames[index],
-            code = disasterCodes[index]
-        )
-    }
     val selectedItems = remember { mutableStateOf("") }
 
 
@@ -60,12 +55,9 @@ fun FilterChips(
                     if (disaster.code != selectedItems.value){
                         selectedItems.value = disaster.code
                         viewModel.getDisaster(disaster.code)
-                        viewModel.getReportLive()
-//                        viewModel.getReportLive(disaster = disaster, timerPeriod = "604800")
                     }else{
                         selectedItems.value = ""
                         viewModel.getDisaster(disaster = null)
-                        viewModel.getReportLive()
                     }
                 },
                 label = { Text(text = disaster.label)},

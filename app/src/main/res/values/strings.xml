@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Data Bencana</string>
+    <string name="search">Search</string>
+    <string name="disaster_info">Disaster Information</string>
 
     <!--    Disaster List   -->
     <string-array name="disaster_names">

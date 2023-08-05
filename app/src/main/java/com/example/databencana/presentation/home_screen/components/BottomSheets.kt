@@ -15,10 +15,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.databencana.R
 import com.example.databencana.domain.model.ReportModel
 import com.example.databencana.presentation.home_screen.HomeViewModel
 
@@ -38,7 +40,7 @@ fun BottomSheets(
         sheetContent = {
             Text(modifier = Modifier
                 .align(Alignment.CenterHorizontally),
-                text = "Informasi Bencana Terikini",
+                text = stringResource(id = R.string.disaster_info),
                 fontSize = 20.sp
             )
             Surface(

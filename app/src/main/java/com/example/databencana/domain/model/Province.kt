@@ -1,6 +1,6 @@
 package com.example.databencana.domain.model
 
-data class SupportedArea(
-    val province: String,
+data class Province(
+    val name: String,
     val code: String
 )

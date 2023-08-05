@@ -1,10 +1,15 @@
 package com.example.databencana.data.repository
 
+import android.content.Context
+import com.example.databencana.R
 import com.example.databencana.data.remote.ReportsApi
 import com.example.databencana.data.remote.response.toReportModel
+import com.example.databencana.domain.model.DisasterType
 import com.example.databencana.domain.model.ReportModel
+import com.example.databencana.domain.model.Province
 import com.example.databencana.domain.repository.ReportsRepository
 import com.example.databencana.utils.Resource
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -12,7 +17,8 @@ import java.io.IOException
 import javax.inject.Inject
 
 class ReportsRepositoryImpl @Inject constructor(
-    private val api: ReportsApi
+    private val api: ReportsApi,
+    @ApplicationContext private val context: Context
 ): ReportsRepository {
 
     override fun getReportsLive(
@@ -31,15 +37,27 @@ class ReportsRepositoryImpl @Inject constructor(
         }
     }
 
-    //    override suspend fun getReportsLive(timerPeriod: String?, regionCode: String?, disaster: String?): Flow<Response<List<ReportModel>>> {
-//        return api.getLiveReport(timerPeriod, regionCode, disaster)
-//    }
+    override fun getDisasterType(): Flow<List<DisasterType>> = flow {
+        val disasterNames = context.resources.getStringArray(R.array.disaster_names)
+        val disasterCodes = context.resources.getStringArray(R.array.disaster_codes)
+        val disasterType = disasterNames.mapIndexed { index, _ ->
+            DisasterType(
+                label = disasterNames[index],
+                code = disasterCodes[index]
+            )
+        }
+        emit(disasterType)
+    }
 
-//    override suspend fun getReportsLive(timeperiod: String, regionCode: String, disaster: String): ReportResult {
-//        return api.getLiveReport(timeperiod, regionCode, disaster)
-//    }
-
-//    override suspend fun getReportsArchive(start: String, end: String): ReportResult {
-//        return api.getArchiveReport(start, end)
-//    }
+    override fun getSupportedArea(): Flow<List<Province>> = flow {
+        val provinceNames = context.resources.getStringArray(R.array.province_names)
+        val provinceCodes = context.resources.getStringArray(R.array.province_codes)
+        val province = provinceNames.mapIndexed { index, _ ->
+            Province(
+                name = provinceNames[index],
+                code = provinceCodes[index]
+            )
+        }
+        emit(province)
+    }
 }
