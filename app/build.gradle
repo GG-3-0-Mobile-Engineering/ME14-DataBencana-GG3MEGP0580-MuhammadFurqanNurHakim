@@ -67,6 +67,8 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+    //material
+    implementation 'androidx.compose.material:material:1.4.3'
     //data
     def room_version = "2.5.2"
     implementation "androidx.room:room-runtime:$room_version"

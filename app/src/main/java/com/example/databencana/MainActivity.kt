@@ -4,15 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.databencana.ui.theme.DataBencanaTheme
 import com.example.databencana.data.local.datastore.UserPreferences
-import com.example.databencana.presentation.SettingScreen
-import com.example.databencana.presentation.home_screen.HomeScreen
+import com.example.databencana.presentation.HomeScreen
+import com.example.databencana.ui.theme.DataBencanaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,8 +25,6 @@ class MainActivity : ComponentActivity() {
 
             val context = LocalContext.current
 
-            val scope = rememberCoroutineScope()
-
             val dataStore = UserPreferences(context)
 
             val darkMode = dataStore.getDarkMode.collectAsState(initial = false)
@@ -42,11 +38,9 @@ class MainActivity : ComponentActivity() {
                     startDestination = "Main Screen"
                 ){
                     composable("Main Screen"){
-                        HomeScreen(navController)
+                        HomeScreen(navController, dataStore, darkMode.value!!)
                     }
-                    composable("Settings"){
-                        SettingScreen(navController, scope, dataStore, darkMode.value!!)
-                    }
+
                 }
 
 

@@ -1,4 +1,4 @@
-package com.example.databencana.presentation.home_screen
+package com.example.databencana.presentation
 
 import com.example.databencana.domain.model.DisasterType
 import com.example.databencana.domain.model.ReportModel

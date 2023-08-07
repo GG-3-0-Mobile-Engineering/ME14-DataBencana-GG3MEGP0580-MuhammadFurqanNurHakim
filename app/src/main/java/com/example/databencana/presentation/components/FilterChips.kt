@@ -1,4 +1,4 @@
-package com.example.databencana.presentation.home_screen.components
+package com.example.databencana.presentation.components
 
 import android.util.Log
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,11 +17,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringArrayResource
 import androidx.compose.ui.unit.dp
-import com.example.databencana.R
-import com.example.databencana.domain.model.DisasterType
-import com.example.databencana.presentation.home_screen.HomeViewModel
+import com.example.databencana.presentation.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,11 +42,11 @@ fun FilterChips(
                 modifier = Modifier.padding(horizontal = 6.dp),
                 selected = disaster.code == selectedItems.value,
                 shape = FilterChipDefaults.shape,
-                colors = FilterChipDefaults.filterChipColors(
-                    containerColor = Color.White,
-                    selectedContainerColor = Color.Green,
-
-                ),
+//                colors = FilterChipDefaults.filterChipColors(
+//                    containerColor = Color.White,
+//                    selectedContainerColor = Color.Green,
+//
+//                ),
                 onClick = {
                     println(selectedItems)
                     if (disaster.code != selectedItems.value){
