@@ -1,4 +1,4 @@
-package com.example.databencana.presentation.home_screen.components
+package com.example.databencana.presentation.components
 
 import android.util.Log
 import androidx.compose.foundation.clickable
@@ -13,7 +13,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.DockedSearchBar
@@ -32,16 +31,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import com.example.databencana.R
-import com.example.databencana.presentation.home_screen.HomeViewModel
+import com.example.databencana.presentation.HomeViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBars(
-    navController: NavController,
     viewModel: HomeViewModel
-    ) {
+) {
 
     val province = viewModel.state.value.province
     val searchText by viewModel.searchText.collectAsState()
@@ -77,12 +74,6 @@ fun SearchBars(
                         Icon(
                             imageVector = Icons.Filled.DateRange,
                             contentDescription = "Date Range",
-                        )
-                    }
-                    IconButton(onClick = {navController.navigate("Settings")}) {
-                        Icon(
-                            imageVector = Icons.Filled.Settings,
-                            contentDescription = "Settings",
                         )
                     }
                 }
